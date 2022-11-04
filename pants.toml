@@ -1,13 +1,19 @@
 # pants.toml
 [GLOBAL]
 pants_version = "2.14.0"
-backend_packages = ["pants.backend.python"]
+backend_packages = [
+    "pants.backend.python",
+    "pants.backend.python.lint.flake8",
+    "pants.backend.python.lint.isort",
+    "pants.backend.python.lint.black",
+]
 
 [python]
 interpreter_constraints = [">=3.8,<3.10"]
 #enable_resolves = true
 #resolves = { requirements = "lockfiles/requirements.txt" }
 #lockfile_generator = "pex"
+
 
 [python-bootstrap]
 # We search for interpreters on both on the $PATH and in the `$(pyenv root)/versions` folder.
@@ -21,3 +27,7 @@ search_path = ["<PATH>", "<PYENV>"]
 [python-infer]
 string_imports = true
 
+[flake8]
+args=[
+    "--max-line-length=120"
+]
